@@ -1,11 +1,12 @@
 import numpy as np
+import pygame as pg
 
 
 print("hello world")
 
-mainGrid = np.zeros((10,10), int)
-print(mainGrid)
-for x in mainGrid:
-    mainGrid[x][x] = 1
+mainGrid = np.empty((10,10), int)
+mainGrid.fill(1)
+    
+    
 
 print(mainGrid)
