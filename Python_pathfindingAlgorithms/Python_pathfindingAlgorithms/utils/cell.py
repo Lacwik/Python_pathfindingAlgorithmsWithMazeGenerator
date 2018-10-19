@@ -3,11 +3,12 @@ import random
 from utils.configuration import *
 
 class cell(object):
-    def __init__(self, x, y, grid, window):
+    def __init__(self, x, y, grid, window, color):
         self.x = x*cellWidth
         self.y = y*cellWidth
         self.window = window
         self.grid = grid
+        self.color = color
 
         self.visited = False
         self.active = False
@@ -58,19 +59,17 @@ class cell(object):
             return False
 
     def draw(self):
-        if(self.visited == True):
-            pygame.draw.rect(self.window,WHITE,(self.x,self.y,cellWidth,cellWidth))
-        elif(self.active == True):
+        if(self.active == True):
             pygame.draw.rect(self.window,RED,(self.x,self.y,cellWidth,cellWidth))
         else:
-            pygame.draw.rect(self.window,BLACK,(self.x,self.y,cellWidth,cellWidth))
+            pygame.draw.rect(self.window,self.color,(self.x,self.y,cellWidth,cellWidth))
 
         #WALLS
         if(self.cellWalls[0] == True):
-            pygame.draw.line(self.window,BLACK,(self.x,self.y),((self.x + cellWidth),self.y),1)
+            pygame.draw.line(self.window,BLACK,(self.x,self.y),((self.x + cellWidth),self.y),2)
         if(self.cellWalls[1] == True):
-            pygame.draw.line(self.window,BLACK,((self.x + cellWidth),(self.y + cellWidth)),(self.x,(self.y + cellWidth)),1)
+            pygame.draw.line(self.window,BLACK,((self.x + cellWidth),(self.y + cellWidth)),(self.x,(self.y + cellWidth)),2)
         if(self.cellWalls[2] == True):
-            pygame.draw.line(self.window,BLACK,((self.x + cellWidth),(self.y + cellWidth)),((self.x + cellWidth),self.y),1) 
+            pygame.draw.line(self.window,BLACK,((self.x + cellWidth),(self.y + cellWidth)),((self.x + cellWidth),self.y),2) 
         if(self.cellWalls[3] == True):
-            pygame.draw.line(self.window,BLACK,(self.x,self.y),(self.x,(self.y + cellWidth)),1) 
+            pygame.draw.line(self.window,BLACK,(self.x,self.y),(self.x,(self.y + cellWidth)),2) 
