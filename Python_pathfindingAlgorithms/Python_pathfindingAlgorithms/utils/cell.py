@@ -1,6 +1,6 @@
 import pygame
 import random
-from utils.configuration import cols, rows, cellWidth, WHITE, GREY, BLACK, PURPLE, RED
+from utils.configuration import *
 
 class cell(object):
     def __init__(self, x, y, grid, window):
@@ -12,7 +12,6 @@ class cell(object):
         self.visited = False
         self.active = False
         self.cellWalls = [True,True,True,True]
-
 
         self.neighbors = []
         self.topNeighbor = 0
@@ -75,4 +74,3 @@ class cell(object):
             pygame.draw.line(self.window,BLACK,((self.x + cellWidth),(self.y + cellWidth)),((self.x + cellWidth),self.y),1) 
         if(self.cellWalls[3] == True):
             pygame.draw.line(self.window,BLACK,(self.x,self.y),(self.x,(self.y + cellWidth)),1) 
-

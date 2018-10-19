@@ -28,6 +28,9 @@
     <Compile Include="utils\configuration.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="utils\maze.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="utils\" />
