@@ -25,6 +25,9 @@
     <Compile Include="utils\cell.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="utils\configuration.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="utils\" />
