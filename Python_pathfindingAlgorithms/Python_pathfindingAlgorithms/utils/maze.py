@@ -19,14 +19,14 @@ def removeWalls(currentCell,nextCell):
             nextCell.cellWalls[2] = False
 
 class maze(object):
-    def __init__(self, window):
+    def __init__(self, surface):
         self.mainGrid = []
         self.stack=[]
-        self.window = window
+        self.surface = surface
         for y in range(rows):
              self.mainGrid.append([])
              for x in range(cols):
-                  self.mainGrid[y].append(cell(x,y, self.mainGrid, self.window, WHITE))
+                  self.mainGrid[y].append(cell(x,y, self.mainGrid, WHITE, self.surface))
         self.currentCell = self.mainGrid[0][0]
         self.nextCell = 0
         self.stopGenerating = False

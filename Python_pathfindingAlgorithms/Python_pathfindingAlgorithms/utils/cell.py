@@ -3,16 +3,16 @@ import random
 from utils.configuration import *
 
 class cell(object):
-    def __init__(self, x, y, grid, window, color):
+    def __init__(self, x, y, grid, color, surface):
         self.x = x*cellWidth
         self.y = y*cellWidth
-        self.window = window
         self.grid = grid
         self.color = color
+        self.surface = surface
 
         self.visited = False
         self.active = False
-        self.cellWalls = [True,True,True,True]
+        self.cellWalls = [True,True,True,True] #top, bottom, right, left
 
         self.neighbors = []
         self.topNeighbor = 0
@@ -60,16 +60,16 @@ class cell(object):
 
     def draw(self):
         if(self.active == True):
-            pygame.draw.rect(self.window,RED,(self.x,self.y,cellWidth,cellWidth))
+            pygame.draw.rect(self.surface,RED,(self.x,self.y,cellWidth,cellWidth))
         else:
-            pygame.draw.rect(self.window,self.color,(self.x,self.y,cellWidth,cellWidth))
+            pygame.draw.rect(self.surface,self.color,(self.x,self.y,cellWidth,cellWidth))
 
         #WALLS
         if(self.cellWalls[0] == True):
-            pygame.draw.line(self.window,BLACK,(self.x,self.y),((self.x + cellWidth),self.y),2)
+            pygame.draw.line(self.surface,BLACK,(self.x,self.y),((self.x + cellWidth),self.y),2) #top
         if(self.cellWalls[1] == True):
-            pygame.draw.line(self.window,BLACK,((self.x + cellWidth),(self.y + cellWidth)),(self.x,(self.y + cellWidth)),2)
+            pygame.draw.line(self.surface,BLACK,((self.x + cellWidth),(self.y + cellWidth)),(self.x,(self.y + cellWidth)),2) #bottom
         if(self.cellWalls[2] == True):
-            pygame.draw.line(self.window,BLACK,((self.x + cellWidth),(self.y + cellWidth)),((self.x + cellWidth),self.y),2) 
+            pygame.draw.line(self.surface,BLACK,((self.x + cellWidth),(self.y + cellWidth)),((self.x + cellWidth),self.y),2) #right
         if(self.cellWalls[3] == True):
-            pygame.draw.line(self.window,BLACK,(self.x,self.y),(self.x,(self.y + cellWidth)),2) 
+            pygame.draw.line(self.surface,BLACK,(self.x,self.y),(self.x,(self.y + cellWidth)),2) #left
