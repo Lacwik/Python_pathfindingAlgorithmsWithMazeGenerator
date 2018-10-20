@@ -1,5 +1,3 @@
-import pygame
-import random
 from utils.configuration import *
 
 class cell(object):
@@ -21,6 +19,7 @@ class cell(object):
         self.rightNeighbor = 0
 
         self.nextCell = 0
+        random.seed(mazeSeed)
 
     def checkNeighbors(self):
         """solution based on Wilson's algorithm for generating a maze

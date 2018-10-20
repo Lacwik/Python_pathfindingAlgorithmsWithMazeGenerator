@@ -1,20 +1,19 @@
-import pygame
 from utils.cell import cell
 from utils.configuration import *
 
 def removeWalls(currentCell,nextCell):
         x = int(currentCell.x / cellWidth) - int(nextCell.x / cellWidth)
         y = int(currentCell.y / cellWidth) - int(nextCell.y / cellWidth)
-        if(x == -1): # right of current
+        if(x == -1):
             currentCell.cellWalls[1] = False
             nextCell.cellWalls[3] = False
-        elif(x == 1): # left of current
+        elif(x == 1):
             currentCell.cellWalls[3] = False
             nextCell.cellWalls[1] = False
-        elif(y == -1): # bottom of current
+        elif(y == -1):
             currentCell.cellWalls[2] = False
             nextCell.cellWalls[0] = False
-        elif(y == 1): # top of current
+        elif(y == 1):
             currentCell.cellWalls[0] = False
             nextCell.cellWalls[2] = False
 
