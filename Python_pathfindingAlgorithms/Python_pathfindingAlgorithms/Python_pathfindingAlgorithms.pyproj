@@ -22,6 +22,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Python_pathfindingAlgorithms.py" />
+    <Compile Include="utils\algorithms.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="utils\cell.py">
       <SubType>Code</SubType>
     </Compile>
@@ -29,6 +32,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="utils\maze.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="utils\statistics.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

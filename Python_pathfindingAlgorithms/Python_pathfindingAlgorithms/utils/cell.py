@@ -19,7 +19,8 @@ class cell(object):
         self.rightNeighbor = 0
 
         self.nextCell = 0
-        random.seed(mazeSeed)
+        if(mazeSeed!=0):
+            random.seed(mazeSeed)
 
     def checkNeighbors(self):
         """solution based on Wilson's algorithm for generating a maze

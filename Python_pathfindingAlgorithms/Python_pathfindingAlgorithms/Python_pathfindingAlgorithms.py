@@ -1,5 +1,6 @@
 from utils.cell import cell
 from utils.maze import maze
+from utils.statistics import *
 from utils.configuration import *
 
 PROGRAM_END = False
@@ -26,32 +27,26 @@ while not PROGRAM_END:
         if event.type == pygame.QUIT:
             PROGRAM_END = True
     
-
-
-
-
     maze1.draw()
-    maze1.mainGrid[5][5].color = LIGHT_GREEN
     maze2.draw()
-    maze2.mainGrid[8][8].color = LIGHT_GREEN
     maze3.draw()
+    maze1.mainGrid[5][5].color = LIGHT_GREEN
+    maze2.mainGrid[8][8].color = LIGHT_GREEN
     maze3.mainGrid[3][6].color = LIGHT_GREEN
 
+    #statistics window
     sub4.fill(LIGHT_BLUE)
     pygame.draw.line(sub4, GREY, (0,0),(0, int(windowHEIGHT/2)), 8)
     pygame.draw.line(sub4, GREY, (0,0),(int(windowWIDTH/2), 0), 8)
 
 
 
-
-
-
-    
-
     mainWindow.blit(sub1, (0,0))
     mainWindow.blit(sub2, (int(windowWIDTH/2), 0))
     mainWindow.blit(sub3, (0, int(windowHEIGHT/2)))
     mainWindow.blit(sub4, (int(windowWIDTH/2), int(windowHEIGHT/2)))
+
+    Statistics.texts()
 
     pygame.display.flip()
     clock.tick(10)
