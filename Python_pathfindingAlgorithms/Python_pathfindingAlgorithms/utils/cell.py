@@ -22,6 +22,19 @@ class cell(object):
         if(mazeSeed!=0):
             random.seed(mazeSeed)
 
+    #def getNeighbors_afterGenerate(self):
+    #    if(int(self.y / cellWidth) - 1 >= 0 and self.cellWalls[0] == False):
+    #        self.topNeighbor = self.grid[int(self.y / cellWidth) - 1][int(self.x / cellWidth)]
+        
+    #    if(int(self.x / cellWidth) + 1 <= cols - 1):
+    #        self.rightNeighbor = self.grid[int(self.y / cellWidth)][int(self.x / cellWidth) + 1]
+        
+    #    if(int(self.y / cellWidth) + 1 <= rows - 1):
+    #        self.bottomNeighbor = self.grid[int(self.y / cellWidth) + 1][int(self.x / cellWidth)]
+        
+    #    if(int(self.x / cellWidth) - 1 >= 0):
+    #        self.leftNeighbor = self.grid[int(self.y / cellWidth)][int(self.x / cellWidth) - 1]
+
     def checkNeighbors(self):
         """solution based on Wilson's algorithm for generating a maze
             Returning self.nextCell next position in neighbors[] to check"""
@@ -68,7 +81,7 @@ class cell(object):
         if(self.cellWalls[0] == True):
             pygame.draw.line(self.surface,BLACK,(self.x,self.y),((self.x + cellWidth),self.y),2) #top
         if(self.cellWalls[1] == True):
-            pygame.draw.line(self.surface,BLACK,((self.x + cellWidth),(self.y + cellWidth)),(self.x,(self.y + cellWidth)),2) #bottom
+            pygame.draw.line(self.surface,BLACK,(self.x,(self.y + cellWidth)),((self.x+ cellWidth),(self.y + cellWidth)),2) #bottom
         if(self.cellWalls[2] == True):
             pygame.draw.line(self.surface,BLACK,((self.x + cellWidth),(self.y + cellWidth)),((self.x + cellWidth),self.y),2) #right
         if(self.cellWalls[3] == True):

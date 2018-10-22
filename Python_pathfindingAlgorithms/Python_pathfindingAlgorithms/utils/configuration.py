@@ -13,6 +13,10 @@ windowHEIGHT = 600
 cellWidth = 25
 mazeSeed = 9001 #0 for separate seed for each maze
 
+ASTAR = True
+SHOW_STATS = False
+PAUSE = False
+
 mazeSize = (int(windowWIDTH/2),int(windowHEIGHT/2))
 cols = int(mazeSize[0] / cellWidth)
 rows = int(mazeSize[1] / cellWidth)

@@ -3,6 +3,7 @@ from utils.maze import maze
 from utils.statistics import *
 from utils.configuration import *
 from utils.algorithms import *
+from pygame.locals import *
 
 PROGRAM_END = False
 
@@ -20,16 +21,26 @@ maze2.generate()
 maze3 = maze(sub3)
 maze3.generate()
 
-Algorithms.astar(maze1.mainGrid[2][2],maze1.mainGrid[5][6], maze1)
+iteration_counter = 0
 
 
 # -------- Main Program Loop -----------
 while not PROGRAM_END:
     # --- Main event loop
     for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN and event.key == K_SPACE:
+            PAUSE = not PAUSE
+        if event.type == pygame.KEYDOWN and event.key == K_s:
+            SHOW_STATS = not SHOW_STATS
         if event.type == pygame.QUIT:
             PROGRAM_END = True
-    
+
+    if(not PAUSE): 
+        Algorithms.astar(maze1.mainGrid[0][0],maze1.mainGrid[6][8], maze1, iteration_counter)
+        if(ASTAR):
+            iteration_counter = iteration_counter + 1
+            
+
     maze1.draw()
     maze2.draw()
     maze3.draw()
@@ -51,6 +62,8 @@ while not PROGRAM_END:
     mainWindow.blit(sub4, (int(windowWIDTH/2), int(windowHEIGHT/2)))
 
     Statistics.texts()
+    if(SHOW_STATS == True):
+        Statistics.statictics_display(iteration_counter)
 
     pygame.display.flip()
     clock.tick(10)
