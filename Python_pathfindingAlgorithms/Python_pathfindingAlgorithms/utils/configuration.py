@@ -11,7 +11,7 @@ LIGHT_BLUE = (37,198,247)
 windowWIDTH = 800
 windowHEIGHT = 600
 cellWidth = 25
-mazeSeed = 0 #0 for separate seed for each maze
+mazeSeed = 9001 #0 for separate seed for each maze
 
 mazeSize = (int(windowWIDTH/2),int(windowHEIGHT/2))
 cols = int(mazeSize[0] / cellWidth)

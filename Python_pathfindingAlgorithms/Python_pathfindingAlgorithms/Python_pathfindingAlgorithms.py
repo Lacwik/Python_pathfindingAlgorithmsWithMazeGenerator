@@ -20,7 +20,7 @@ maze2.generate()
 maze3 = maze(sub3)
 maze3.generate()
 
-Algorithms.astar(maze1.mainGrid[0][0],maze1.mainGrid[6][6], maze1)
+Algorithms.astar(maze1.mainGrid[2][2],maze1.mainGrid[5][6], maze1)
 
 
 # -------- Main Program Loop -----------
@@ -36,6 +36,7 @@ while not PROGRAM_END:
 
     maze2.mainGrid[8][8].color = LIGHT_GREEN
     maze3.mainGrid[3][6].color = LIGHT_GREEN
+    maze1.mainGrid[1][1].color = LIGHT_GREEN
 
     #statistics window
     sub4.fill(LIGHT_BLUE)

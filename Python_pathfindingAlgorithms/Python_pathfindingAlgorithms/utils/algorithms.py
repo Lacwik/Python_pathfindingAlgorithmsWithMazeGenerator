@@ -36,8 +36,8 @@ class Algorithms:
 
     @staticmethod
     def heuresticCost(start, end):
-        x = start.x - end.x
-        y = start.y - end.y
+        x = int(start.x/cellWidth) - int(end.x/cellWidth)
+        y = int(start.y/cellWidth) - int(end.y/cellWidth)
         return 1 * max(abs(x),abs(y))
 
     @staticmethod
@@ -65,6 +65,7 @@ class Algorithms:
             F_cost_sorted = sorted(F_cost, key=lambda cell: G_cost[cell] + Algorithms.heuresticCost(cell, endPoint))
             i = 0
             for i in range(len(F_cost_sorted)-1):
+                i = i+1
                 if(F_cost_sorted[i] not in closedset):
                     break
 
@@ -72,7 +73,7 @@ class Algorithms:
 
             if(current == endPoint):
                 for cell in Algorithms.reconstruct_path(endPoint):
-                    maze.mainGrid[cell.x][cell.y].color = PURPLE
+                    maze.mainGrid[int(cell.x/cellWidth)][int(cell.y/cellWidth)].color = LIGHT_BLUE
                 return
 
             try:
