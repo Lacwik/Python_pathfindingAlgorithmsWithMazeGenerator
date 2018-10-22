@@ -2,6 +2,7 @@ from utils.cell import cell
 from utils.maze import maze
 from utils.statistics import *
 from utils.configuration import *
+from utils.algorithms import *
 
 PROGRAM_END = False
 
@@ -19,6 +20,8 @@ maze2.generate()
 maze3 = maze(sub3)
 maze3.generate()
 
+Algorithms.astar(maze1.mainGrid[0][0],maze1.mainGrid[6][6], maze1)
+
 
 # -------- Main Program Loop -----------
 while not PROGRAM_END:
@@ -30,7 +33,7 @@ while not PROGRAM_END:
     maze1.draw()
     maze2.draw()
     maze3.draw()
-    maze1.mainGrid[5][5].color = LIGHT_GREEN
+
     maze2.mainGrid[8][8].color = LIGHT_GREEN
     maze3.mainGrid[3][6].color = LIGHT_GREEN
 
