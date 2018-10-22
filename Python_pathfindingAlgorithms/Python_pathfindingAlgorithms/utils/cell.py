@@ -7,7 +7,7 @@ class cell(object):
         self.grid = grid
         self.color = color
         self.surface = surface
-
+        
         self.visited = False
         self.active = False
         self.cellWalls = [True,True,True,True] #top, bottom, right, left
