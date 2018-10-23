@@ -21,7 +21,11 @@ maze2.generate()
 maze3 = maze(sub3)
 maze3.generate()
 
+algorithm = Algorithms()
+
 iteration_counter = 0
+end_x = cols-1
+end_y = rows-1
 
 
 # -------- Main Program Loop -----------
@@ -35,16 +39,16 @@ while not PROGRAM_END:
         if event.type == pygame.QUIT:
             PROGRAM_END = True
 
-    if(not PAUSE): 
-        Algorithms.astar(maze1.mainGrid[0][0],maze1.mainGrid[6][8], maze1, iteration_counter)
-        if(ASTAR):
-            iteration_counter = iteration_counter + 1
+    if(not PAUSE and algorithm.astar_stop == False): 
+        algorithm.astar(maze1.mainGrid[0][0],maze1.mainGrid[end_y][end_x], maze1)
+        iteration_counter = iteration_counter + 1
             
 
     maze1.draw()
     maze2.draw()
     maze3.draw()
 
+    maze1.mainGrid[end_y][end_x].color = PURPLE
     maze2.mainGrid[8][8].color = LIGHT_GREEN
     maze3.mainGrid[3][6].color = LIGHT_GREEN
     maze1.mainGrid[1][1].color = LIGHT_GREEN

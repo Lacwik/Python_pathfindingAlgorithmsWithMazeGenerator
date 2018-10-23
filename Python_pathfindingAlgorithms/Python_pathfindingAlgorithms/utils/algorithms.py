@@ -4,14 +4,60 @@ from utils.maze import *
 from utils.cell import cell
 from utils.configuration import *
 
-
 G_cost = {}
 F_cost = {}
 came_from = {}
 closedset = set()
 openset = set()
 
+
 class Algorithms:
+    def __init__(self):
+        self.astar_stop = False
+        self.astar_counter = 0
+
+    def astar(self, startPoint, endPoint, maze):
+        if(self.astar_counter==0):
+            G_cost[startPoint] = 0
+            F_cost[startPoint] = G_cost[startPoint] + Algorithms.heuresticCost(startPoint, endPoint)
+            openset.add(startPoint)
+            self.astar_stop = False
+
+        if(Algorithms.count(openset)>0):
+            self.astar_counter = self.astar_counter + 1
+            for cell in openset:
+                    maze.mainGrid[int(cell.x/cellWidth)][int(cell.y/cellWidth)].color = LIGHT_GREEN
+            F_cost_sorted = sorted(F_cost, key=lambda cell: G_cost[cell] + Algorithms.heuresticCost(cell, endPoint))
+            i = 0
+            for i in range(len(F_cost_sorted)-1):
+                i = i+1
+                if(F_cost_sorted[i] not in closedset):
+                    break
+
+            current = F_cost_sorted[i]
+            if(current == endPoint):
+                print("END")
+                self.astar_stop = True
+                for cell in Algorithms.reconstruct_path(endPoint):
+                    maze.mainGrid[int(cell.x/cellWidth)][int(cell.y/cellWidth)].color = LIGHT_BLUE
+                return
+
+            try:
+                openset.remove(current)
+            except KeyError:
+                pass
+
+            closedset.add(current)
+            for neighbour in Algorithms.getNeighbours(current):
+                if neighbour not in closedset:
+                    G_cost_tmp = G_cost[current] + 1
+                    if (neighbour not in openset) or (G_cost_tmp < G_cost[neighbour]): 
+                        came_from[neighbour] = current
+                        G_cost[neighbour] = G_cost_tmp
+                        F_cost[neighbour] = G_cost[neighbour] + Algorithms.heuresticCost(neighbour,endPoint)
+                        if neighbour not in openset:
+                            openset.add(neighbour)
+
     @staticmethod
     def count(collection):
         counter = 0
@@ -57,54 +103,3 @@ class Algorithms:
         except KeyError:
             return [from_cell]
 
-    @staticmethod
-    def astar(startPoint, endPoint, maze, counter_outer):
-        if(counter_outer==0):
-            G_cost[startPoint] = 0
-            F_cost[startPoint] = G_cost[startPoint] + Algorithms.heuresticCost(startPoint, endPoint)
-            openset.add(startPoint)
-            counter_outer=counter_outer+1
-
-        if(Algorithms.count(openset)>0):
-            for cell in openset:
-                    maze.mainGrid[int(cell.x/cellWidth)][int(cell.y/cellWidth)].color = LIGHT_GREEN
-            F_cost_sorted = sorted(F_cost, key=lambda cell: G_cost[cell] + Algorithms.heuresticCost(cell, endPoint))
-            i = 0
-            for i in range(len(F_cost_sorted)-1):
-                i = i+1
-                if(F_cost_sorted[i] not in closedset):
-                    break
-
-            current = F_cost_sorted[i]
-            counter_outer=counter_outer+1
-            if(current == endPoint):
-                #Algorithms.mark_as_done(ASTAR)
-                ASTAR = False
-                for cell in Algorithms.reconstruct_path(endPoint):
-                    maze.mainGrid[int(cell.x/cellWidth)][int(cell.y/cellWidth)].color = LIGHT_BLUE
-                return
-
-            try:
-                openset.remove(current)
-            except KeyError:
-                pass
-
-            closedset.add(current)
-            for neighbour in Algorithms.getNeighbours(current):
-                if neighbour not in closedset:
-                    G_cost_tmp = G_cost[current] + 1
-                    if (neighbour not in openset) or (G_cost_tmp < G_cost[neighbour]): 
-                        came_from[neighbour] = current
-                        G_cost[neighbour] = G_cost_tmp
-                        #if(neighbour == 0): neighbour = current.nextCell
-                        F_cost[neighbour] = G_cost[neighbour] + Algorithms.heuresticCost(neighbour,endPoint)
-                        if neighbour not in openset:
-                            openset.add(neighbour)
-
-
-        
-
-
-
-
-       

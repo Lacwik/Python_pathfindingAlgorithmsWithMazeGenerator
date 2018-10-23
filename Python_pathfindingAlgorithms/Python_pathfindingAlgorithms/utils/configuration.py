@@ -13,7 +13,6 @@ windowHEIGHT = 600
 cellWidth = 25
 mazeSeed = 9001 #0 for separate seed for each maze
 
-ASTAR = True
 SHOW_STATS = False
 PAUSE = False
 
