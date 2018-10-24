@@ -26,7 +26,10 @@ class Algorithms:
         if(Algorithms.count(openset)>0):
             self.astar_counter = self.astar_counter + 1
             for cell in openset:
-                    maze.mainGrid[int(cell.x/cellWidth)][int(cell.y/cellWidth)].color = LIGHT_GREEN
+                try:
+                    maze.mainGrid[int(cell.x/cellWidth)][int(cell.y/cellWidth)].color = LIGHT_YELLOW
+                except:
+                    print("ZJEBAŁO SIE")
             F_cost_sorted = sorted(F_cost, key=lambda cell: G_cost[cell] + Algorithms.heuresticCost(cell, endPoint))
             i = 0
             for i in range(len(F_cost_sorted)-1):
@@ -48,6 +51,11 @@ class Algorithms:
                 pass
 
             closedset.add(current)
+            for cell in closedset:
+                try:
+                    maze.mainGrid[int(cell.x/cellWidth)][int(cell.y/cellWidth)].color = LIGHT_GREEN
+                except:
+                    print("ZJEBAŁO SIE")
             for neighbour in Algorithms.getNeighbours(current):
                 if neighbour not in closedset:
                     G_cost_tmp = G_cost[current] + 1
@@ -77,9 +85,9 @@ class Algorithms:
         if cell.cellWalls[0] == False:
             neighbours.add(cell.topNeighbor)
         if cell.cellWalls[1] == False:
-            neighbours.add(cell.bottomNeighbor)
-        if cell.cellWalls[2] == False:
             neighbours.add(cell.rightNeighbor)
+        if cell.cellWalls[2] == False:
+            neighbours.add(cell.bottomNeighbor)
         if cell.cellWalls[3] == False:
             neighbours.add(cell.leftNeighbor)
         

@@ -22,8 +22,8 @@ maze3 = maze(sub3)
 maze3.generate()
 
 algorithm = Algorithms()
+statistics = Statistics()
 
-iteration_counter = 0
 end_x = cols-1
 end_y = rows-1
 
@@ -40,8 +40,10 @@ while not PROGRAM_END:
             PROGRAM_END = True
 
     if(not PAUSE and algorithm.astar_stop == False): 
-        algorithm.astar(maze1.mainGrid[0][0],maze1.mainGrid[end_y][end_x], maze1)
-        iteration_counter = iteration_counter + 1
+       # algorithm.astar(maze1.mainGrid[0][0],maze1.mainGrid[end_y][end_x], maze1)
+       # algorithm.astar(maze2.mainGrid[0][0],maze2.mainGrid[end_y][end_x], maze2)
+       # algorithm.astar(maze3.mainGrid[0][0],maze3.mainGrid[end_y][end_x], maze3)
+        statistics.astar_iterate()
             
 
     maze1.draw()
@@ -49,9 +51,8 @@ while not PROGRAM_END:
     maze3.draw()
 
     maze1.mainGrid[end_y][end_x].color = PURPLE
-    maze2.mainGrid[8][8].color = LIGHT_GREEN
-    maze3.mainGrid[3][6].color = LIGHT_GREEN
-    maze1.mainGrid[1][1].color = LIGHT_GREEN
+    maze2.mainGrid[end_y][end_x].color = PURPLE
+    maze3.mainGrid[end_y][end_x].color = PURPLE
 
     #statistics window
     sub4.fill(LIGHT_BLUE)
@@ -65,10 +66,10 @@ while not PROGRAM_END:
     mainWindow.blit(sub3, (0, int(windowHEIGHT/2)))
     mainWindow.blit(sub4, (int(windowWIDTH/2), int(windowHEIGHT/2)))
 
-    Statistics.texts()
+
     if(SHOW_STATS == True):
-        Statistics.statictics_display(iteration_counter)
+        statistics.display()
 
     pygame.display.flip()
-    clock.tick(10)
+    clock.tick(5)
 pygame.quit()
