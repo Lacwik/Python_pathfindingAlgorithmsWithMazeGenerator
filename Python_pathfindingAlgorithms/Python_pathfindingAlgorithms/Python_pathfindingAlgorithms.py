@@ -24,8 +24,8 @@ maze3.generate()
 algorithm = Algorithms()
 statistics = Statistics()
 
-end_x = cols-1
-end_y = rows-1
+end_x = rows-1
+end_y = cols-1
 
 
 # -------- Main Program Loop -----------
@@ -36,13 +36,15 @@ while not PROGRAM_END:
             PAUSE = not PAUSE
         if event.type == pygame.KEYDOWN and event.key == K_s:
             SHOW_STATS = not SHOW_STATS
+        if event.type == pygame.KEYDOWN and event.key == K_r:
+            algorithm.reset(maze3)
+            algorithm.reset(maze2)
+            algorithm.reset(maze1)
         if event.type == pygame.QUIT:
             PROGRAM_END = True
 
     if(not PAUSE and algorithm.astar_stop == False): 
-        algorithm.astar(maze1.mainGrid[0][0],maze1.mainGrid[6][6], maze1)
-       # algorithm.astar(maze2.mainGrid[0][0],maze2.mainGrid[end_y][end_x], maze2)
-       # algorithm.astar(maze3.mainGrid[0][0],maze3.mainGrid[end_y][end_x], maze3)
+        algorithm.astar(maze3.mainGrid[0][0],maze3.mainGrid[end_x][end_y], maze3)
         statistics.astar_iterate()
             
 
@@ -50,9 +52,6 @@ while not PROGRAM_END:
     maze2.draw()
     maze3.draw()
 
-    #maze1.mainGrid[end_y][end_x].color = PURPLE
-    #maze2.mainGrid[end_y][end_x].color = PURPLE
-    #maze3.mainGrid[end_y][end_x].color = PURPLE
 
     #statistics window
     sub4.fill(LIGHT_BLUE)
