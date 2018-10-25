@@ -14,7 +14,7 @@ LIGHT_YELLOW = (200, 244, 66)
 windowWIDTH = 800
 windowHEIGHT = 600
 cellWidth = 25
-mazeSeed = 9001 #0 for separate seed for each maze
+mazeSeed = 0 #0 for separate seed for each maze
 
 SHOW_STATS = False
 PAUSE = False

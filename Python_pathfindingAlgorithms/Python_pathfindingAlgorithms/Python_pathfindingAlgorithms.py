@@ -40,7 +40,7 @@ while not PROGRAM_END:
             PROGRAM_END = True
 
     if(not PAUSE and algorithm.astar_stop == False): 
-       # algorithm.astar(maze1.mainGrid[0][0],maze1.mainGrid[end_y][end_x], maze1)
+        algorithm.astar(maze1.mainGrid[0][0],maze1.mainGrid[6][6], maze1)
        # algorithm.astar(maze2.mainGrid[0][0],maze2.mainGrid[end_y][end_x], maze2)
        # algorithm.astar(maze3.mainGrid[0][0],maze3.mainGrid[end_y][end_x], maze3)
         statistics.astar_iterate()
@@ -50,9 +50,9 @@ while not PROGRAM_END:
     maze2.draw()
     maze3.draw()
 
-    maze1.mainGrid[end_y][end_x].color = PURPLE
-    maze2.mainGrid[end_y][end_x].color = PURPLE
-    maze3.mainGrid[end_y][end_x].color = PURPLE
+    #maze1.mainGrid[end_y][end_x].color = PURPLE
+    #maze2.mainGrid[end_y][end_x].color = PURPLE
+    #maze3.mainGrid[end_y][end_x].color = PURPLE
 
     #statistics window
     sub4.fill(LIGHT_BLUE)
@@ -71,5 +71,5 @@ while not PROGRAM_END:
         statistics.display()
 
     pygame.display.flip()
-    clock.tick(5)
+    clock.tick(15)
 pygame.quit()
