@@ -11,12 +11,10 @@ F_cost = {}
 came_from = {}
 closedset = set()
 openset = set()
-
 # Djikstra
 d_path = {}
 previous = {}
 queue = []
-
 # Bellman-Ford
 
 
