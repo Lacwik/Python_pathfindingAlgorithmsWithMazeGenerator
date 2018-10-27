@@ -17,6 +17,8 @@ d_path = {}
 previous = {}
 queue = []
 
+# Bellman-Ford
+
 
 class Algorithms:
     def __init__(self):
@@ -40,6 +42,7 @@ class Algorithms:
         d_path = {}
         previous = {}
         queue = []
+        # Bellman-Ford reset
 
         for y in range(rows):
              for x in range(cols):
