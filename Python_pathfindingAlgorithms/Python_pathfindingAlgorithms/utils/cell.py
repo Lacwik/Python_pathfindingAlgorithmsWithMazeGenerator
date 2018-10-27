@@ -22,6 +22,18 @@ class cell(object):
         if(mazeSeed!=0):
             random.seed(mazeSeed)
 
+    def __lt__(self, other):
+        if(self.x == other.x):
+            return self.y < other.y
+        else:
+            return self.x < other.x
+
+    def __gt__(self, other):
+        if(self.x == other.x):
+            return self.y > other.y
+        else:
+            return self.x > other.x
+
 
     def checkNeighbors(self):
         """solution based on Wilson's algorithm for generating a maze

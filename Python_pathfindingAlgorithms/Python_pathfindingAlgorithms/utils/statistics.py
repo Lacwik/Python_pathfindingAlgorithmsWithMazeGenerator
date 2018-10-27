@@ -12,6 +12,9 @@ class Statistics:
     def astar_iterate(self):
         self.astar_counter = self.astar_counter + 1
 
+    def djikstra_iterate(self):
+        self.djikstra_counter = self.astar_counter + 1
+
     def display(self):
        myfont = pygame.font.SysFont(None, 30)
        label_captions = myfont.render("A*    Djikstra   Something", 1, (0,0,0))

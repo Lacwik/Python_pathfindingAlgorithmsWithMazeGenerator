@@ -1,20 +1,57 @@
 import math
 import sys
+import heapq
 from utils.maze import *
 from utils.cell import cell
 from utils.configuration import *
 
+# A*
 G_cost = {}
 F_cost = {}
 came_from = {}
 closedset = set()
 openset = set()
 
+# Djikstra
+d_path = {}
+previous = {}
+queue = []
+
 
 class Algorithms:
     def __init__(self):
         self.astar_stop = False
+        self.djikstra_stop = False
         self.astar_counter = 0
+        self.djikstra_counter = 0
+
+    def djikstra(self, startPoint, endPoint, maze):
+        maze.mainGrid[int(endPoint.y/cellWidth)][int(endPoint.x/cellWidth)].color = PURPLE
+        maze.mainGrid[int(startPoint.y/cellWidth)][int(startPoint.x/cellWidth)].color = PURPLE
+        if(self.djikstra_counter == 0):
+           d_path[startPoint] = 0
+           previous[startPoint] = None
+           heapq.heappush(queue,(d_path[startPoint], startPoint))
+           self.djikstra_stop = False
+
+        if(Algorithms.count(queue)>0):
+            tmp_distance,current = heapq.heappop(queue)
+            maze.mainGrid[int(current.y/cellWidth)][int(current.x/cellWidth)].color = LIGHT_GREEN
+            for neighbor in Algorithms.getNeighbours(current):
+                tmp_wage = tmp_distance + 1
+                if(neighbor not in d_path or tmp_wage < d_path[neighbor]):
+                    maze.mainGrid[int(neighbor.y/cellWidth)][int(neighbor.x/cellWidth)].color = LIGHT_YELLOW
+                    d_path[neighbor] = tmp_wage
+                    heapq.heappush(queue,(d_path[neighbor], neighbor))
+
+        if(current == endPoint):
+            while(current):
+                maze.mainGrid[int(current.y/cellWidth)][int(current.x/cellWidth)].color = LIGHT_BLUE
+                current = prev[current]
+            self.djikstra_stop = True
+                
+
+        
 
     def astar(self, startPoint, endPoint, maze):
         maze.mainGrid[int(endPoint.y/cellWidth)][int(endPoint.x/cellWidth)].color = PURPLE
@@ -65,6 +102,7 @@ class Algorithms:
                             openset.add(neighbour)
 
     def reset(self, maze):
+        # A* reset
         self.astar_stop = False
         self.astar_counter = 0
         G_cost = {}
@@ -72,6 +110,12 @@ class Algorithms:
         came_from = {}
         closedset.clear()
         openset.clear()
+        # Djikstra reset
+        self.djikstra_stop = False
+        d_path = {}
+        previous = {}
+        queue = []
+
         for y in range(rows):
              for x in range(cols):
                   maze.mainGrid[y][x].color = WHITE

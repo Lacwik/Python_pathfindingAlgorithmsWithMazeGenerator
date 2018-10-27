@@ -44,8 +44,13 @@ while not PROGRAM_END:
             PROGRAM_END = True
 
     if(not PAUSE and algorithm.astar_stop == False): 
-        algorithm.astar(maze3.mainGrid[0][0],maze3.mainGrid[end_x][end_y], maze3)
+        #algorithm.astar(maze1.mainGrid[0][0],maze1.mainGrid[end_x][end_y], maze1)
         statistics.astar_iterate()
+
+    if(not PAUSE and algorithm.djikstra_stop == False):
+        algorithm.djikstra(maze1.mainGrid[0][0],maze1.mainGrid[end_x][end_y], maze1)
+        statistics.djikstra_iterate()
+        
             
 
     maze1.draw()
@@ -70,5 +75,5 @@ while not PROGRAM_END:
         statistics.display()
 
     pygame.display.flip()
-    clock.tick(15)
+    clock.tick(framerate)
 pygame.quit()
