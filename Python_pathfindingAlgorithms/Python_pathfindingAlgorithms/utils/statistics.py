@@ -8,12 +8,16 @@ class Statistics:
     def __init__(self):
         self.astar_counter = 0
         self.djikstra_counter = 0
+        self.bf_counter = 0
 
     def astar_iterate(self):
         self.astar_counter = self.astar_counter + 1
 
     def djikstra_iterate(self):
         self.djikstra_counter = self.astar_counter + 1
+
+    def bf_iterate(self):
+        self.bf_counter = self.bf_counter + 1
 
     def display(self):
        myfont = pygame.font.SysFont(None, 30)

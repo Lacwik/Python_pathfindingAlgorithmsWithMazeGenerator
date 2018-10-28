@@ -13,17 +13,24 @@ closedset = set()
 openset = set()
 # Djikstra
 d_path = {}
-previous = {}
+d_previous = {}
 queue = []
 # Bellman-Ford
-
+bf_path = {}
+bf_previous = {}
 
 class Algorithms:
     def __init__(self):
+        # A*
         self.astar_stop = False
-        self.djikstra_stop = False
         self.astar_counter = 0
+        # Dijkstra
+        self.djikstra_stop = False
         self.djikstra_counter = 0
+        # Bellman-Ford
+        self.bf_stop = False
+        self.bf_counter = 0
+        self.bf_change = False
 
     def reset(self, maze):
         # A* reset
@@ -38,21 +45,58 @@ class Algorithms:
         self.djikstra_stop = False
         self.djikstra_counter = 0
         d_path = {}
-        previous = {}
+        d_previous = {}
         queue = []
         # Bellman-Ford reset
-
+        self.bf_stop = False
+        self.bf_counter = 0
+        bf_path = {}
+        bf_previous = {}
+        self.bf_change = False
+        # recolor maze
         for y in range(rows):
              for x in range(cols):
                   maze.mainGrid[y][x].color = WHITE
 
+    # BELLMAN-FORD ALGORITHM
+    def bellman_ford(self, startPoint, endPoint, maze):
+        maze.mainGrid[int(endPoint.y/cellWidth)][int(endPoint.x/cellWidth)].color = END_CELL_COLOR
+        maze.mainGrid[int(startPoint.y/cellWidth)][int(startPoint.x/cellWidth)].color = START_CELL_COLOR
+        if(self.bf_counter == 0): #first iteration, chceck all cells in maze
+            for y in range(rows):
+                for x in range(cols):
+                    bf_path[maze.mainGrid[y][x]] = float('Inf')
+            bf_path[startPoint] = 0
+            current = startPoint
+            bf_previous[startPoint] = None
+            self.bf_stop = False
+            
+        self.bf_counter = self.bf_counter + 1
+        for y in range(rows):
+            for x in range(cols):
+                current = maze.mainGrid[y][x]
+                maze.mainGrid[int(current.y/cellWidth)][int(current.x/cellWidth)].color = CURRENT_CELL_COLOR
+                for neighbour in Algorithms.getNeighbours(current):
+                    if bf_path[neighbour] > bf_path[current] + 1: # relax
+                        bf_path[neighbour]  = bf_path[current] + 1
+                        bf_previous[neighbour] = current
+                        maze.mainGrid[int(current.y/cellWidth)][int(current.x/cellWidth)].color = VISITED_CELL_COLOR
+                        self.bf_change = True
+                    else:
+                        self.bf_change = False
+                    if(current == endPoint and self.bf_change == False):
+                        print("BELLMAN-FORD| STOP")
+                        self.bf_stop = True
+        
+
+    # DIJKSTRA ALGORITHM
     def djikstra(self, startPoint, endPoint, maze):
         maze.mainGrid[int(endPoint.y/cellWidth)][int(endPoint.x/cellWidth)].color = END_CELL_COLOR
         maze.mainGrid[int(startPoint.y/cellWidth)][int(startPoint.x/cellWidth)].color = START_CELL_COLOR
         if(self.djikstra_counter == 0):
            d_path[startPoint] = 0
            current = None
-           previous[startPoint] = None
+           d_previous[startPoint] = None
            heapq.heappush(queue,(d_path[startPoint], startPoint))
            self.djikstra_stop = False
 
@@ -65,20 +109,20 @@ class Algorithms:
                 if(neighbor not in d_path or tmp_wage < d_path[neighbor]):
                     maze.mainGrid[int(neighbor.y/cellWidth)][int(neighbor.x/cellWidth)].color = CURRENT_CELL_COLOR
                     d_path[neighbor] = tmp_wage
-                    previous[neighbor] = current
+                    d_previous[neighbor] = current
                     heapq.heappush(queue,(d_path[neighbor], neighbor))
 
         if(current == endPoint):
             while(current):
                 maze.mainGrid[int(current.y/cellWidth)][int(current.x/cellWidth)].color = PATH_COLOR
-                current = previous[current]
+                current = d_previous[current]
             maze.mainGrid[int(endPoint.y/cellWidth)][int(endPoint.x/cellWidth)].color = END_CELL_COLOR
             maze.mainGrid[int(startPoint.y/cellWidth)][int(startPoint.x/cellWidth)].color = START_CELL_COLOR
             self.djikstra_stop = True
                 
 
         
-
+    # A* ALGORITHM
     def astar(self, startPoint, endPoint, maze):
         maze.mainGrid[int(endPoint.y/cellWidth)][int(endPoint.x/cellWidth)].color = END_CELL_COLOR
         maze.mainGrid[int(startPoint.y/cellWidth)][int(startPoint.x/cellWidth)].color = START_CELL_COLOR

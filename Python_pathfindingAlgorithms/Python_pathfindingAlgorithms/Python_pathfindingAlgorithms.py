@@ -44,12 +44,16 @@ while not PROGRAM_END:
             PROGRAM_END = True
 
     if(not PAUSE and algorithm.astar_stop == False): 
-        algorithm.astar(maze3.mainGrid[0][0],maze3.mainGrid[end_x][end_y], maze3)
+        #algorithm.astar(maze3.mainGrid[0][0],maze3.mainGrid[end_x][end_y], maze3)
         statistics.astar_iterate()
 
     if(not PAUSE and algorithm.djikstra_stop == False):
-        algorithm.djikstra(maze2.mainGrid[0][0],maze2.mainGrid[end_x][end_y], maze2)
+        #algorithm.djikstra(maze2.mainGrid[0][0],maze2.mainGrid[end_x][end_y], maze2)
         statistics.djikstra_iterate()
+
+    if(not PAUSE and algorithm.bf_stop == False):
+        algorithm.bellman_ford(maze1.mainGrid[0][0],maze1.mainGrid[end_x][end_y], maze1)
+        statistics.bf_iterate()
         
             
 
