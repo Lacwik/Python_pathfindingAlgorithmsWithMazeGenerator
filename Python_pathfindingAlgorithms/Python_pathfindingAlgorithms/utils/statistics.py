@@ -21,8 +21,8 @@ class Statistics:
 
     def display(self):
        myfont = pygame.font.SysFont(None, 30)
-       label_captions = myfont.render("A*    Djikstra   Something", 1, (0,0,0))
-       label_iterations = myfont.render("Iterations: " + str(self.astar_counter), 1, (0,0,0))
+       label_captions = myfont.render("                 A*    Dijkstra   Bellman-Ford", 1, (0,0,0))
+       label_iterations = myfont.render("Iterations:     " + str(self.astar_counter) + "        " + str(self.djikstra_counter) + "          " + str(self.bf_counter), 1, (0,0,0))
        mainWindow.blit(label_iterations, (x+10, y+30))
        mainWindow.blit(label_captions, (x+30, y+10))
 

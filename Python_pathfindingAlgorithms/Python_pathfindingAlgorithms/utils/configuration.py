@@ -12,16 +12,16 @@ LIGHT_BLUE = (37,198,247)
 LIGHT_YELLOW = (200, 244, 66)
 
 PATH_COLOR = LIGHT_BLUE
-CURRENT_CELL_COLOR = LIGHT_YELLOW
+CURRENT_CELL_COLOR = YELLOW
 VISITED_CELL_COLOR = LIGHT_GREEN
 START_CELL_COLOR = PURPLE
 END_CELL_COLOR = PURPLE
 
-windowWIDTH = 800
-windowHEIGHT = 600
+windowWIDTH = 1000
+windowHEIGHT = 800
 cellWidth = 25
 framerate = 30
-mazeSeed = 9001 #0 for separate seed for each maze
+mazeSeed = 0 #0 for separate seed for each maze
 
 SHOW_STATS = False
 PAUSE = False

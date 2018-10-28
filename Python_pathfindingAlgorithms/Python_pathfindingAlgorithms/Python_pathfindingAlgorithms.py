@@ -34,6 +34,7 @@ while not PROGRAM_END:
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN and event.key == K_SPACE:
             PAUSE = not PAUSE
+            print("-----STOPPED-----")
         if event.type == pygame.KEYDOWN and event.key == K_s:
             SHOW_STATS = not SHOW_STATS
         if event.type == pygame.KEYDOWN and event.key == K_r:
@@ -44,11 +45,11 @@ while not PROGRAM_END:
             PROGRAM_END = True
 
     if(not PAUSE and algorithm.astar_stop == False): 
-        #algorithm.astar(maze3.mainGrid[0][0],maze3.mainGrid[end_x][end_y], maze3)
+        algorithm.astar(maze3.mainGrid[0][0],maze3.mainGrid[end_x][end_y], maze3)
         statistics.astar_iterate()
 
     if(not PAUSE and algorithm.djikstra_stop == False):
-        #algorithm.djikstra(maze2.mainGrid[0][0],maze2.mainGrid[end_x][end_y], maze2)
+        algorithm.djikstra(maze2.mainGrid[0][0],maze2.mainGrid[end_x][end_y], maze2)
         statistics.djikstra_iterate()
 
     if(not PAUSE and algorithm.bf_stop == False):
