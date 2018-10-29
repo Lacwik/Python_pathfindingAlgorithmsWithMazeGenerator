@@ -11,6 +11,11 @@ class Statistics:
         self.djikstra_counter = 0
         self.bf_counter = 0
 
+    def iterations_reset(self):
+        self.astar_counter = 0
+        self.djikstra_counter = 0
+        self.bf_counter = 0
+
     def astar_iterate(self):
         self.astar_counter = self.astar_counter + 1
 

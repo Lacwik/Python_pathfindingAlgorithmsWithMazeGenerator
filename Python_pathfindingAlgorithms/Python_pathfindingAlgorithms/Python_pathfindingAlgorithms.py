@@ -50,6 +50,7 @@ while not PROGRAM_END:
             algorithm.reset(maze3)
             algorithm.reset(maze2)
             algorithm.reset(maze1)
+            statistics.iterations_reset()
         if event.type == pygame.QUIT:
             PROGRAM_END = True
 

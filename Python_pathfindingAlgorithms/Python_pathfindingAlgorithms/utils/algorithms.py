@@ -50,9 +50,9 @@ class Algorithms:
         self.djikstra_stop = False
         self.djikstra_counter = 0
         self.dijkstra_time = 0.0
-        d_path = {}
+        d_path.clear()
         d_previous = {}
-        queue = []
+        queue.clear()
         # Bellman-Ford reset
         self.bf_stop = False
         self.bf_counter = 0
