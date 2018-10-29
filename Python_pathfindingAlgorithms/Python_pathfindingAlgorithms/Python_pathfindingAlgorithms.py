@@ -28,6 +28,15 @@ end_x = rows-1
 end_y = cols-1
 
 
+#bf_file = open("bf_plot_data.txt", "a")
+#maze1.generate()
+#maze1.count_connections()
+#print("connections: " + str(maze1.connections_number))
+#while(algorithm.bf_stop == False):
+#    algorithm.bellman_ford(maze1.mainGrid[0][0],maze1.mainGrid[end_x][end_y], maze1)
+#algorithm.reset(maze1)
+#bf_file.write(str(algorithm.bf_time) + " " + str(maze1.connections_number) + "\n")
+
 # -------- Main Program Loop -----------
 while not PROGRAM_END:
     # --- Main event loop
@@ -77,7 +86,9 @@ while not PROGRAM_END:
 
 
     if(SHOW_STATS == True):
-        statistics.display()
+        statistics.display(algorithm.bf_time, algorithm.dijkstra_time, algorithm.astar_time)
+    else:
+        statistics.welcome_info()
 
     pygame.display.flip()
     clock.tick(framerate)

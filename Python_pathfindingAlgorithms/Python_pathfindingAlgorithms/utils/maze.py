@@ -1,4 +1,5 @@
 from utils.cell import cell
+from utils.algorithms import *
 from utils.configuration import *
 
 def removeWalls(currentCell,nextCell):
@@ -22,15 +23,19 @@ class maze(object):
         self.mainGrid = []
         self.stack=[]
         self.surface = surface
+        self.nodes_number = 0
+        self.connections_number = 0
         for y in range(rows):
              self.mainGrid.append([])
              for x in range(cols):
                   self.mainGrid[y].append(cell(x,y, self.mainGrid, WHITE, self.surface))
+                  self.nodes_number = self.nodes_number + 1
         self.currentCell = self.mainGrid[0][0]
         self.nextCell = 0
         self.stopGenerating = False
 
     def generate(self):
+        self.connections_number = 0
         while not self.stopGenerating:
             self.currentCell.visited = True
             self.currentCell.active = True
@@ -69,3 +74,13 @@ class maze(object):
         for y in range(rows):
             for x in range(cols):
                 self.mainGrid[y][x].draw()
+
+    def count_connections(self):
+        cells_tab = []
+        for y in range(rows):
+            for x in range(cols):
+                for neighbor in Algorithms.getNeighbours(self.mainGrid[y][x]):
+                    if(neighbor not in cells_tab):
+                        cells_tab.append(neighbor)
+                        self.connections_number = self.connections_number + 1
+        cells_tab.clear()
