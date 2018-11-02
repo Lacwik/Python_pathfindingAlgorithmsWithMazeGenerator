@@ -19,7 +19,7 @@ END_CELL_COLOR = PURPLE
 
 windowWIDTH = 1000
 windowHEIGHT = 800
-cellWidth = 15
+cellWidth = 20
 wallWidth = 4
 framerate = 60
 mazeSeed = 9001 #0 for separate seed for each maze

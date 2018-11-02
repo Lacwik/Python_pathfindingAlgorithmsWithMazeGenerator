@@ -17,21 +17,24 @@ sub3 = mainSurface.subsurface(p3_camera)
 sub4 = mainSurface.subsurface(p4_camera)
 
 maze1 = maze(sub1)
+maze1.generate()
 maze2 = maze(sub2)
+maze2.generate()
 maze3 = maze(sub3)
+maze3.generate()
+
+#maze1.generate()
+#maze2.generate() #maze
+#maze3.generate()
 
 
 #maze1.load_level_1()
 #maze2.load_level_1() # whiteboard
 #maze3.load_level_1()
 
-#maze1.load_level_2()
-#maze2.load_level_2() # uncomment ony for more than 14 x 14 cells
-#maze3.load_level_2()
-
-maze1.generate()
-maze2.generate() # maze
-maze3.generate()
+maze1.load_level_2()
+maze2.load_level_2() # uncomment ony for more than 14 x 14 cells
+maze3.load_level_2()
 
 algorithm = Algorithms()
 statistics = Statistics()
@@ -79,19 +82,14 @@ while not PROGRAM_END:
         algorithm.bellman_ford(maze1.mainGrid[7][7],maze1.mainGrid[end_x][end_y], maze1)
         statistics.bf_iterate()
         
-            
-
     maze1.draw()
     maze2.draw()
     maze3.draw()
-
 
     #statistics window
     sub4.fill(LIGHT_BLUE)
     pygame.draw.line(sub4, GREY, (0,0),(0, int(windowHEIGHT/2)), 8)
     pygame.draw.line(sub4, GREY, (0,0),(int(windowWIDTH/2), 0), 8)
-
-
 
     mainWindow.blit(sub1, (0,0))
     mainWindow.blit(sub2, (int(windowWIDTH/2), 0))
