@@ -164,6 +164,7 @@ class Algorithms:
         if(Algorithms.count(openset)>0):
             self.astar_counter = self.astar_counter + 1
             for cell in openset:
+                if(cell != startPoint):
                     maze.mainGrid[int(cell.y/cellWidth)][int(cell.x/cellWidth)].color = CURRENT_CELL_COLOR
             F_cost_sorted = sorted(F_cost, key=lambda cell: G_cost[cell] + Algorithms.heuresticCost(cell, endPoint))
             i = 0
@@ -213,6 +214,18 @@ class Algorithms:
     @staticmethod
     def getNeighbours(cell):
         neighbours = set()
+
+        if(int(cell.y / cellWidth) - 1 >= 0):
+            cell.topNeighbor = cell.grid[int(cell.y / cellWidth) - 1][int(cell.x / cellWidth)]
+        
+        if(int(cell.x / cellWidth) + 1 <= cols - 1):
+            cell.rightNeighbor = cell.grid[int(cell.y / cellWidth)][int(cell.x / cellWidth) + 1]
+        
+        if(int(cell.y / cellWidth) + 1 <= rows - 1):
+            cell.bottomNeighbor = cell.grid[int(cell.y / cellWidth) + 1][int(cell.x / cellWidth)]
+        
+        if(int(cell.x / cellWidth) - 1 >= 0):
+            cell.leftNeighbor = cell.grid[int(cell.y / cellWidth)][int(cell.x / cellWidth) - 1]
 
         if cell.cellWalls[0] == False:
             neighbours.add(cell.topNeighbor)

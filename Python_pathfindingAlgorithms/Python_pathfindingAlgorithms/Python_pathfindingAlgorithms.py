@@ -4,6 +4,7 @@ from utils.statistics import *
 from utils.configuration import *
 from utils.algorithms import *
 from pygame.locals import *
+import cProfile
 
 PROGRAM_END = False
 
@@ -14,11 +15,22 @@ sub1 = mainSurface.subsurface(p1_camera)
 sub2 = mainSurface.subsurface(p2_camera)
 sub3 = mainSurface.subsurface(p3_camera)
 sub4 = mainSurface.subsurface(p4_camera)
+
 maze1 = maze(sub1)
-maze1.generate()
 maze2 = maze(sub2)
-maze2.generate()
 maze3 = maze(sub3)
+
+
+#maze1.load_level_1()
+#maze2.load_level_1() # whiteboard
+#maze3.load_level_1()
+
+#maze1.load_level_2()
+#maze2.load_level_2() # uncomment ony for more than 14 x 14 cells
+#maze3.load_level_2()
+
+maze1.generate()
+maze2.generate() # maze
 maze3.generate()
 
 algorithm = Algorithms()
@@ -55,15 +67,16 @@ while not PROGRAM_END:
             PROGRAM_END = True
 
     if(not PAUSE and algorithm.astar_stop == False): 
-        algorithm.astar(maze3.mainGrid[0][0],maze3.mainGrid[end_x][end_y], maze3)
+        algorithm.astar(maze3.mainGrid[7][7],maze3.mainGrid[end_x][end_y], maze3)
+        #cProfile.run('algorithm.astar(maze3.mainGrid[0][0],maze3.mainGrid[end_x][end_y], maze3)', 'stats.txt')
         statistics.astar_iterate()
 
     if(not PAUSE and algorithm.djikstra_stop == False):
-        algorithm.djikstra(maze2.mainGrid[0][0],maze2.mainGrid[end_x][end_y], maze2)
+        algorithm.djikstra(maze2.mainGrid[7][7],maze2.mainGrid[end_x][end_y], maze2)
         statistics.djikstra_iterate()
 
     if(not PAUSE and algorithm.bf_stop == False):
-        algorithm.bellman_ford(maze1.mainGrid[0][0],maze1.mainGrid[end_x][end_y], maze1)
+        algorithm.bellman_ford(maze1.mainGrid[7][7],maze1.mainGrid[end_x][end_y], maze1)
         statistics.bf_iterate()
         
             

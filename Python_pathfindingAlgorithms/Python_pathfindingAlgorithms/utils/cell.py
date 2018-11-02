@@ -79,10 +79,10 @@ class cell(object):
 
         #WALLS
         if(self.cellWalls[0] == True):
-            pygame.draw.line(self.surface,BLACK,(self.x,self.y),((self.x + cellWidth),self.y),2) #top
+            pygame.draw.line(self.surface,BLACK,(self.x,self.y),((self.x + cellWidth),self.y),wallWidth) #top
         if(self.cellWalls[1] == True):
-            pygame.draw.line(self.surface,BLACK,((self.x + cellWidth),(self.y + cellWidth)),((self.x + cellWidth),self.y),2) #right
+            pygame.draw.line(self.surface,BLACK,((self.x + cellWidth),(self.y + cellWidth)),((self.x + cellWidth),self.y),wallWidth) #right
         if(self.cellWalls[2] == True):
-            pygame.draw.line(self.surface,BLACK,(self.x,(self.y + cellWidth)),((self.x+ cellWidth),(self.y + cellWidth)),2) #bottom
+            pygame.draw.line(self.surface,BLACK,(self.x,(self.y + cellWidth)),((self.x+ cellWidth),(self.y + cellWidth)),wallWidth) #bottom
         if(self.cellWalls[3] == True):
-            pygame.draw.line(self.surface,BLACK,(self.x,self.y),(self.x,(self.y + cellWidth)),2) #left
+            pygame.draw.line(self.surface,BLACK,(self.x,self.y),(self.x,(self.y + cellWidth)),wallWidth) #left

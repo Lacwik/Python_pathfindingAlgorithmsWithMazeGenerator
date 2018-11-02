@@ -17,10 +17,11 @@ VISITED_CELL_COLOR = LIGHT_GREEN
 START_CELL_COLOR = PURPLE
 END_CELL_COLOR = PURPLE
 
-windowWIDTH = 800
-windowHEIGHT = 600
-cellWidth = 25
-framerate = 30
+windowWIDTH = 1000
+windowHEIGHT = 800
+cellWidth = 15
+wallWidth = 4
+framerate = 60
 mazeSeed = 9001 #0 for separate seed for each maze
 SHOW_STATS = False
 PAUSE = False

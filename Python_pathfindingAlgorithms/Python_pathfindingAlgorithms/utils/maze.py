@@ -84,3 +84,32 @@ class maze(object):
                         cells_tab.append(neighbor)
                         self.connections_number = self.connections_number + 1
         cells_tab.clear()
+
+    @staticmethod
+    def clear_grid(mainGrid):
+        for y in range(rows):
+            for x in range(cols):
+                    mainGrid[y][x].cellWalls = [False, False, False, False]
+        for i in range(cols):
+            mainGrid[0][i].cellWalls = [True, False, False, False]
+            mainGrid[rows-1][i].cellWalls = [False, False, True, False]
+        for j in range(rows):
+            mainGrid[j][0].cellWalls = [False, False, False, True]
+            mainGrid[j][cols-1].cellWalls = [False, True, False, False]
+        mainGrid[0][0].cellWalls = [True, False, False, True]
+        mainGrid[0][cols-1].cellWalls = [True, True, False, False]
+        mainGrid[rows-1][0].cellWalls = [False, False, True, True]
+        mainGrid[rows-1][cols-1].cellWalls = [False, True, True, False]
+
+    def load_level_1(self):
+        maze.clear_grid(self.mainGrid)
+
+    def load_level_2(self):
+        maze.clear_grid(self.mainGrid)
+        self.mainGrid[13][13].cellWalls = [True, True, True, True]
+        self.mainGrid[13][13].color = BLACK
+        for i in range(5, 13): 
+            self.mainGrid[13][i].cellWalls = [True, True, True, True]
+            self.mainGrid[i][13].cellWalls = [True, True, True, True]
+            self.mainGrid[13][i].color = BLACK
+            self.mainGrid[i][13].color = BLACK
