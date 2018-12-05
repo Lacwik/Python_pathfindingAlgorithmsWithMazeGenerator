@@ -15,6 +15,6 @@ s	    -> show statistics <br />
 r	    ->	reset <br />
 
 ===== SPECIFICATIONS ===== <br />
-Language: Python 3.5 <br />
+Language: Python 3.7.1 <br />
 Packages: PyGame 1.9.4 <br />
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; NumPy 1.15.4 <br />
